@@ -1,0 +1,23 @@
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:equatable/equatable.dart';
+import 'package:quotes_app/features/quotes/repository/quote_repository.dart';
+import 'package:quotes_app/models/models.dart';
+
+part 'quotes_event.dart';
+part 'quotes_state.dart';
+
+class QuotesBloc extends Bloc<QuotesEvent, QuotesState> {
+  final QuotesRepositpry _quotesRepositpry;
+
+  QuotesBloc(this._quotesRepositpry) : super(QuotesLoadingState()) {
+    on<LoadQuotesEvent>((event, emit) async {
+      emit(QuotesLoadingState());
+      try {
+        final model = await _quotesRepositpry.getQuote();
+        emit(QuotesLoadedState(model));
+      } catch (e) {
+        emit(QuotesErrorState(e.toString()));
+      }
+    });
+  }
+}
