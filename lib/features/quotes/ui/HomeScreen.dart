@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:quotes_app/features/quotes/bloc/quotes_bloc.dart';
+import 'package:quotes_app/bloc/quotes/quotes_bloc.dart';
 import 'package:quotes_app/features/quotes/ui/widgets/quote_widget.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -12,8 +12,14 @@ class HomeScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
-        title: const Text('Quotes'),
-        centerTitle: true,
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children:  [
+            const SizedBox(),
+            const Text('Quotes'),
+            IconButton(onPressed: () {}, icon: Icon(Icons.mode_night)),
+          ],
+        ),
       ),
       body: BlocProvider<QuotesBloc>(
         create: (context) =>
