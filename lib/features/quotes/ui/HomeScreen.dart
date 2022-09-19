@@ -4,9 +4,16 @@ import 'package:quotes_app/bloc/quotes/quotes_bloc.dart';
 import 'package:quotes_app/bloc/theme/theme_bloc.dart';
 import 'package:quotes_app/features/quotes/ui/widgets/quote_widget.dart';
 import 'package:quotes_app/helpers/app_theme.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
+
+  void storePref(String key, bool value) async {
+    final prefs = await SharedPreferences.getInstance();
+    prefs.setBool(key, value);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -27,10 +34,12 @@ class HomeScreen extends StatelessWidget {
                         BlocProvider.of<ThemeBloc>(context).add(
                             const ChangeThemeEvent(
                                 theme: AppTheme.lightTheme, isDark: false));
+                        storePref("isDark", false);
                       } else {
                         BlocProvider.of<ThemeBloc>(context).add(
                             const ChangeThemeEvent(
                                 theme: AppTheme.darkTheme, isDark: true));
+                        storePref("isDark", true);
                       }
                     },
                     icon: Icon(Icons.mode_night));
