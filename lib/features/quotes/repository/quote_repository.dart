@@ -1,6 +1,6 @@
-import 'package:quotes_app/models/models.dart';
-import 'package:quotes_app/network/network_helper.dart';
-import 'package:quotes_app/network/network_service.dart';
+import '../../../models/models.dart';
+import '../../../network/network_helper.dart';
+import '../../../network/network_service.dart';
 
 class QuotesRepository {
   final String _baseUrl = "https://api.quotable.io/random";

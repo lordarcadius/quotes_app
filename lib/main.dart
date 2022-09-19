@@ -1,7 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:quotes_app/app/app.dart';
+import 'app/app.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
   debugPrint("Main: main()");
-  runApp(const QuotesApp());
+  runApp(QuotesApp(
+    isDark: await readPref("isDark"),
+  ));
+}
+
+Future<bool> readPref(String key) async {
+  final prefs = await SharedPreferences.getInstance();
+  return prefs.getBool(key) ?? false;
 }

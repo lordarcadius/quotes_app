@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
-import 'package:quotes_app/network/network_enums.dart';
-import 'package:quotes_app/network/network_typedef.dart';
+import 'network_enums.dart';
+import 'network_typedef.dart';
 
 class NetworkHelper {
   const NetworkHelper._();

@@ -1,7 +1,8 @@
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:quotes_app/features/quotes/repository/quote_repository.dart';
-import 'package:quotes_app/models/models.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+import '../../features/quotes/repository/quote_repository.dart';
+import '../../models/models.dart';
 
 part 'quotes_event.dart';
 part 'quotes_state.dart';

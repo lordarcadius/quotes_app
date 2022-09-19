@@ -1,24 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:quotes_app/bloc/theme/theme_bloc.dart';
-import 'package:quotes_app/features/quotes/repository/quote_repository.dart';
-import 'package:quotes_app/features/quotes/ui/HomeScreen.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+
+import '../bloc/theme/theme_bloc.dart';
+import '../features/quotes/repository/quote_repository.dart';
+import '../features/quotes/ui/home_screen.dart';
 
 class QuotesApp extends StatelessWidget {
-  const QuotesApp({Key? key}) : super(key: key);
+  const QuotesApp({Key? key, required this.isDark}) : super(key: key);
 
-  Future<bool> readPref(String key) async {
-    final prefs = await SharedPreferences.getInstance();
-    bool? value = prefs.getBool(key);
-    if (value == null) {
-      print("quoteDebug: null");
-      return false;
-    } else {
-      print("quoteDebug: not null: $value");
-      return value;
-    }
-  }
+  final bool isDark;
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +16,7 @@ class QuotesApp extends StatelessWidget {
     return RepositoryProvider(
       create: (context) => QuotesRepository(),
       child: BlocProvider(
-        create: (context) => ThemeBloc(true),
+        create: (context) => ThemeBloc(isDark),
         child: BlocBuilder<ThemeBloc, ThemeState>(
           builder: (context, state) {
             return MaterialApp(

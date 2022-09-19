@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:quotes_app/models/models.dart';
+import '../../../../models/models.dart';
 
 class QuoteWidget extends StatelessWidget {
   const QuoteWidget({Key? key, required this.model, required this.onPressed})

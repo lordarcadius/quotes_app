@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:quotes_app/bloc/quotes/quotes_bloc.dart';
-import 'package:quotes_app/bloc/theme/theme_bloc.dart';
-import 'package:quotes_app/features/quotes/ui/widgets/quote_widget.dart';
-import 'package:quotes_app/helpers/app_theme.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../../../bloc/quotes/quotes_bloc.dart';
+import '../../../bloc/theme/theme_bloc.dart';
+import '../../../helpers/app_theme.dart';
+import 'widgets/quote_widget.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
