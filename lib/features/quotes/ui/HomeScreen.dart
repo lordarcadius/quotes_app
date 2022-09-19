@@ -1,23 +1,41 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:quotes_app/bloc/quotes/quotes_bloc.dart';
+import 'package:quotes_app/bloc/theme/theme_bloc.dart';
 import 'package:quotes_app/features/quotes/ui/widgets/quote_widget.dart';
+import 'package:quotes_app/helpers/app_theme.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    debugPrint("HomeScreen: Buildcontext");
+    debugPrint("HomeScreen build");
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
         title: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children:  [
+          children: [
             const SizedBox(),
             const Text('Quotes'),
-            IconButton(onPressed: () {}, icon: Icon(Icons.mode_night)),
+            BlocBuilder<ThemeBloc, ThemeState>(
+              builder: (context, state) {
+                return IconButton(
+                    onPressed: () {
+                      if (state.isDark) {
+                        BlocProvider.of<ThemeBloc>(context).add(
+                            const ChangeThemeEvent(
+                                theme: AppTheme.lightTheme, isDark: false));
+                      } else {
+                        BlocProvider.of<ThemeBloc>(context).add(
+                            const ChangeThemeEvent(
+                                theme: AppTheme.darkTheme, isDark: true));
+                      }
+                    },
+                    icon: Icon(Icons.mode_night));
+              },
+            ),
           ],
         ),
       ),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:quotes_app/bloc/theme/theme_bloc.dart';
 import 'package:quotes_app/features/quotes/repository/quote_repository.dart';
 import 'package:quotes_app/features/quotes/ui/HomeScreen.dart';
 
@@ -10,13 +11,18 @@ class QuotesApp extends StatelessWidget {
   Widget build(BuildContext context) {
     debugPrint("QuotesApp: Buildcontext");
     return RepositoryProvider(
-      create: (context) => QuotesRepositpry(),
-      child: MaterialApp(
-        debugShowCheckedModeBanner: false,
-        theme: ThemeData(
-          useMaterial3: true,
+      create: (context) => QuotesRepository(),
+      child: BlocProvider(
+        create: (context) => ThemeBloc(),
+        child: BlocBuilder<ThemeBloc, ThemeState>(
+          builder: (context, state) {
+            return MaterialApp(
+              debugShowCheckedModeBanner: false,
+              theme: state.themeData,
+              home: const HomeScreen(),
+            );
+          },
         ),
-        home: const HomeScreen(),
       ),
     );
   }

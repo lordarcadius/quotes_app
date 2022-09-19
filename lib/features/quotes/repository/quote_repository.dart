@@ -2,7 +2,7 @@ import 'package:quotes_app/models/models.dart';
 import 'package:quotes_app/network/network_helper.dart';
 import 'package:quotes_app/network/network_service.dart';
 
-class QuotesRepositpry {
+class QuotesRepository {
   final String _baseUrl = "https://api.quotable.io/random";
 
   Future<QuoteModel> getQuote() async {

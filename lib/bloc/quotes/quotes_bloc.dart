@@ -7,7 +7,7 @@ part 'quotes_event.dart';
 part 'quotes_state.dart';
 
 class QuotesBloc extends Bloc<QuotesEvent, QuotesState> {
-  final QuotesRepositpry _quotesRepositpry;
+  final QuotesRepository _quotesRepositpry;
 
   QuotesBloc(this._quotesRepositpry) : super(QuotesLoadingState()) {
     on<LoadQuotesEvent>((event, emit) async {
