@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
 import '../../../bloc/quotes/quotes_bloc.dart';
 import '../../../bloc/theme/theme_bloc.dart';
 import '../../../helpers/app_theme.dart';
@@ -20,12 +19,11 @@ class HomeScreen extends StatelessWidget {
     debugPrint("HomeScreen build");
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.white,
         title: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             const SizedBox(),
-            const Text('Quotes'),
+            Text('Quotesy', style: Theme.of(context).appBarTheme.titleTextStyle,),
             BlocBuilder<ThemeBloc, ThemeState>(
               builder: (context, state) {
                 return IconButton(
@@ -42,7 +40,11 @@ class HomeScreen extends StatelessWidget {
                         storePref("isDark", true);
                       }
                     },
-                    icon: Icon(Icons.mode_night));
+                  icon: Icon(
+                    state.isDark ? Icons.sunny : Icons.mode_night,
+                    color: Theme.of(context).iconTheme.color,
+                  ),
+                );
               },
             ),
           ],
