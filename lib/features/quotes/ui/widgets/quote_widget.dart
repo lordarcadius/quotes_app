@@ -14,8 +14,8 @@ class QuoteWidget extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.only(bottom: 10.0),
       child: FractionallySizedBox(
-        widthFactor: 0.5,
-        heightFactor: 0.5,
+        widthFactor: MediaQuery.of(context).size.width < 600 ? 1 : 0.6,
+        heightFactor: 0.6,
         child: Card(
           shape: Theme.of(context).cardTheme.shape,
           color: Theme.of(context).cardTheme.color,
