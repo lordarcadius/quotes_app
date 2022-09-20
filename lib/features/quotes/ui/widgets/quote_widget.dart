@@ -17,7 +17,7 @@ class QuoteWidget extends StatelessWidget {
         widthFactor: 0.5,
         heightFactor: 0.5,
         child: Card(
-        shape: Theme.of(context).cardTheme.shape,
+          shape: Theme.of(context).cardTheme.shape,
           color: Theme.of(context).cardTheme.color,
           elevation: 0,
           child: Padding(
@@ -30,26 +30,29 @@ class QuoteWidget extends StatelessWidget {
                   child: Text(
                     model.content,
                     textAlign: TextAlign.center,
-                    style:  TextStyle(fontSize: 20,color: Theme.of(context).textTheme.bodyText1!.color),
+                    style: TextStyle(
+                        fontSize: 20,
+                        color: Theme.of(context).textTheme.bodyText1!.color),
                   ),
                 ),
-                Padding(
-                  padding: const EdgeInsets.only(bottom: 30.0),
-                  child: Wrap(
-                    children: [
-                      for (var tag in model.tags)
-                        Chip(
-                          label: Text(tag),
-                          labelPadding:
-                              const EdgeInsets.symmetric(horizontal: 15),
-                          backgroundColor: Colors.deepPurple.shade200,
-                        ),
-                    ],
-                    // child: Text(
-                    //   tagsToString(model.tags),
-                    //   textAlign: TextAlign.center,
-                    //   style: const TextStyle(fontSize: 18),
-                    // ),
+                Expanded(
+                  child: Container(
+                    padding: const EdgeInsets.only(bottom: 25.0),
+                    child: ListView.builder(
+                      shrinkWrap: true,
+                        scrollDirection: Axis.horizontal,
+                        itemCount: model.tags.length,
+                        itemBuilder: (BuildContext context, int index) {
+                          return Container(
+                             margin: const EdgeInsets.all(5),
+                            child: Chip(
+                              label: Text(model.tags[index]),
+                              labelPadding:
+                                  const EdgeInsets.symmetric(horizontal: 15),
+                              backgroundColor: Colors.deepPurple.shade200,
+                            ),
+                          );
+                        }),
                   ),
                 ),
                 Padding(
@@ -57,7 +60,9 @@ class QuoteWidget extends StatelessWidget {
                   child: Text(
                     'Author: ${model.author}',
                     textAlign: TextAlign.center,
-                    style: TextStyle(fontSize: 18, color: Theme.of(context).textTheme.bodyText1!.color),
+                    style: TextStyle(
+                        fontSize: 18,
+                        color: Theme.of(context).textTheme.bodyText1!.color),
                   ),
                 ),
                 ElevatedButton(
